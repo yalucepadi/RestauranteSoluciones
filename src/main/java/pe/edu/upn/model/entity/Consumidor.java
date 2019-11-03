@@ -34,9 +34,17 @@ public class Consumidor {
 	@OneToMany(mappedBy = "consumidor", fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
 
-	@OneToOne(mappedBy = "consumidor", fetch = FetchType.LAZY)
-	private Pedido pedido;
+	@OneToMany(mappedBy = "consumidor", fetch = FetchType.LAZY)
+	private  List<Pedido> pedidos;
 
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 	public Consumidor() 
 {
@@ -84,13 +92,7 @@ reservas = new ArrayList<>();
 		this.reservas = reservas;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+	
 
 	
 }

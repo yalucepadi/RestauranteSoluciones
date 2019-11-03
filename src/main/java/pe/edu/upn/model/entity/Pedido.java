@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,12 +19,12 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pedido_id")
 	private Integer pedidoCod;
-
+   
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "camarero_id")
 	private Camarero camarero;
 	
-	@OneToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "consumidor_id")
 	private Consumidor consumidor;
 	

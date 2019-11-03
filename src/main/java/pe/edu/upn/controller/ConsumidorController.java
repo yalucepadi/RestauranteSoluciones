@@ -16,20 +16,23 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upn.model.entity.Consumidor;
 import pe.edu.upn.model.entity.Menu;
+import pe.edu.upn.model.entity.Pedido;
 import pe.edu.upn.model.entity.Plato;
 import pe.edu.upn.model.entity.Reserva;
 import pe.edu.upn.service.ConsumidorService;
+import pe.edu.upn.service.PedidoService;
 import pe.edu.upn.service.ReservaService;
 
 @Controller
 @RequestMapping("/consumidor")
-@SessionAttributes( {"consumidor", "reserva"} )
+@SessionAttributes( {"consumidor", "reserva","pedido"} )
 public class ConsumidorController {
 	@Autowired
 	private ConsumidorService consumidorService;
 	@Autowired
 	private ReservaService reservaService;
-	
+	@Autowired
+	private PedidoService pedidoService;
 	@GetMapping
 public String inicio(Model model) {
 	try {
@@ -103,5 +106,49 @@ public String inicio(Model model) {
 			// TODO: handle exception
 		}
 		return "redirect:/consumidor/info/" + reserva.getConsumidor().getConsumidorCod();
+	}
+	
+	@GetMapping("/pedido/{id}")
+	public String pedido(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Consumidor> consumidor = consumidorService.findById(id);
+			if(consumidor.isPresent()) {
+				model.addAttribute("consumidor", consumidor.get());
+			} else {
+				return "redirect:/consumidor";
+			}
+		} catch (Exception e) {
+
+		}	
+		
+		return "/consumidor/pedido";
+	}
+	@GetMapping("/{id}/nuevopedido")
+	public String nuevoPedido(@PathVariable("id") int id, Model model) {
+		Pedido pedido = new Pedido();
+		try {
+			Optional<Consumidor> consumidor = consumidorService.findById(id);
+			if(consumidor.isPresent()) {
+				pedido.setConsumidor(consumidor.get());
+				model.addAttribute("pedido", pedido);
+			} else {
+				return "redirect:/consumidor";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "/consumidor/nuevopedido";
+	}
+	@PostMapping("/savepedido")
+	public String savePedido(@ModelAttribute("pedido") Pedido pedido,
+			Model model, SessionStatus status) {
+		try {
+			pedidoService.save(pedido);
+			status.setComplete();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/consumidor/pedido/" + pedido.getConsumidor().getConsumidorCod();
 	}
 }
