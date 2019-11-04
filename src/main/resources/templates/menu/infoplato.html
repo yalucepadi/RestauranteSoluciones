@@ -48,9 +48,9 @@
 					<tbody th:each="detalleDeVenta ${plato.detalleDeVenta}">
 						<tr>
 			
-							<th scope="row" th:text="${plato.platoId}">1</th>
-							<td th:text="${plato.menu.menuId}">1</td>
-							<td th:text="${plato.platoNombre}">Mark</td>
+							<th scope="row" th:text="${detalleDeVenta.detalleDeVentaId}">1</th>
+							<td th:text="${detalleDeVenta.detalleDeVentaPrecio}">1</td>
+							<td th:text="${detalleDeVenta.ventaTotal.ventaTotalCod}">1</td>
 							
 			
 							

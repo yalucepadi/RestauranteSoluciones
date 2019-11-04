@@ -194,7 +194,7 @@ public class MenuController {
 	}
 	
 	@PostMapping("/savedetalledeventa")
-	public String savedetalleDeVenta(@ModelAttribute("detalledeventa") DetalleDeVenta detalleDeVenta,
+	public String savedetalleDeVenta(@ModelAttribute("detalleDeVenta") DetalleDeVenta detalleDeVenta,
 			Model model, SessionStatus status) {
 		try {
 			detalleDeVentaService.save(detalleDeVenta);
