@@ -28,8 +28,8 @@ public class InitDB implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		/*this.usuarioRepository.deleteAll();
+		/*
+		this.usuarioRepository.deleteAll();
 		this.authorityRepository.deleteAll();
 		
 		Usuario juan = new Usuario();
@@ -63,8 +63,7 @@ public class InitDB implements CommandLineRunner{
         
         List<Usuario> usuarios = Arrays.asList(juan, admin, manager);        
         this.usuarioRepository.saveAll(usuarios);	
-	*/
-	
+	*/	
 	}
 	
 	 }
