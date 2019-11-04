@@ -34,6 +34,14 @@ public class Plato {
 	@JoinColumn(name = "menu_id")
 	private Menu menu;
 
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "detalle_de_venta_id",nullable = true)
 	private DetalleDeVenta detalleDeVenta;
