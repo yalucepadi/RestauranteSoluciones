@@ -28,26 +28,29 @@
 					<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="fas fa-home"></i>Inicio
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/usuario}">
+					<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/usuario}">
 						<i class="fas fa-home"></i> Usuario
 					</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/consumidor}">
+						<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/consumidor}">
 						<i class="fas fa-home"></i> Consumidor
 					</a></li>
-							<li class="nav-item"><a class="nav-link" th:href="@{/admin}">
+							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/admin}">
 						<i class="fas fa-home"></i> Admin
 					</a></li>
 			
-					<li class="nav-item"><a class="nav-link" th:href="@{/menu}">
+					<li  sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/menu}">
 						<i class="fas fa-home"></i> Menu
 					</a></li>
-							<li class="nav-item"><a class="nav-link" th:href="@{/mesa}">
+							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/mesa}">
 						<i class="fas fa-home"></i> Mesa
 					</a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/camarero}">
+									<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/camarero}">
 						<i class="fas fa-home"></i> Camarero
 					</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/cocina}">
+						<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/cocina}">
+						<i class="fas fa-home"></i> Cocina
+					</a></li>
+							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/VentaTotal}">
 						<i class="fas fa-home"></i> Cocina
 					</a></li>
 						<li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/login}">

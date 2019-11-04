@@ -40,18 +40,32 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
+							<th scope="col">Menu Id</th>
 							<th scope="col">Nombre del plato </th>
 							<th scope="col">plato Descripcion</th>
+						    <th scope="col">Stock</th>
+							<th scope="col">Detalle de venta id</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody th:each="plato: ${menu.platos}">
 						<tr>
+			
 							<th scope="row" th:text="${plato.platoId}">1</th>
+							<td th:text="${plato.menu.menuId}">1</td>
 							<td th:text="${plato.platoNombre}">Mark</td>
 							<td th:text="${plato.platoDescripcion}">Otto</td>
+							<td th:text="${plato.stock}">1</td>
+						    <td th:text="${plato.detalleDeVenta.detalleDeVentaId}">1</td>
+			
+							
 							<td>
-													
+							<a th:href="@{ '/menu/editplato/' + ${plato.platoId} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>	
+									<a th:href="@{ '/menu/infoplato/' + ${plato.platoId} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>					
 							</td>
 						</tr>						
 					</tbody>

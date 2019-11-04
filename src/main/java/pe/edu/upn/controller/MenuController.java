@@ -13,17 +13,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
+import pe.edu.upn.model.entity.Cocina;
+import pe.edu.upn.model.entity.DetalleDeVenta;
 import pe.edu.upn.model.entity.Menu;
 import pe.edu.upn.model.entity.Plato;
 import pe.edu.upn.model.entity.Turno;
 import pe.edu.upn.model.repository.TurnoRepository;
+import pe.edu.upn.service.DetalleDeVentaService;
 import pe.edu.upn.service.MenuService;
 import pe.edu.upn.service.PlatoService;
 import pe.edu.upn.service.TurnoService;
 
 @Controller
 @RequestMapping("/menu")
-@SessionAttributes( {"menu", "plato" ,"turno"} )
+@SessionAttributes( {"menu", "plato" ,"turno","detalleDeVenta"} )
 public class MenuController {
 	@Autowired
 	private MenuService menuService;
@@ -31,6 +35,8 @@ public class MenuController {
 	private PlatoService platoService;
 	@Autowired
 	private TurnoService turnoService;
+	@Autowired
+	private DetalleDeVentaService detalleDeVentaService;
 	@GetMapping
 	public String inicio(Model model) {
 		try {
@@ -94,6 +100,23 @@ public class MenuController {
 		return "/menu/infoturno";
 	}
 	
+	@GetMapping("/infoplato/{id}")
+	public String info_plato(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Menu> menu = menuService.findById(id);
+			if(menu.isPresent()) {
+				model.addAttribute("menu", menu.get());
+			} else {
+				return "redirect:/menu";
+			}
+		} catch (Exception e) {
+
+		}	
+		
+		return "/menu/infoplato";
+	}
+	
+	
 	@GetMapping("/{id}/nuevoplato")
 	public String nuevoPlato(@PathVariable("id") int id, Model model) {
 		Plato plato = new Plato();
@@ -153,7 +176,54 @@ public class MenuController {
 		}
 		return "redirect:/menu/infoturno/" + turno.getMenu().getMenuId();
 	}
+	@GetMapping("/{id}/nuevodetalledeventa")
+	public String nuevoDetalleDeventa(@PathVariable("id") int id, Model model) {
+		DetalleDeVenta detalleDeVenta = new DetalleDeVenta();
+		try {
+			Optional<Plato> plato = platoService.findById(id);
+			if(plato.isPresent()) {
+				detalleDeVenta.setPlato(plato.get());
+				model.addAttribute("detalledeDeVenta", detalleDeVenta);
+			} else {
+				return "redirect:/menu/info";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "/menu/nuevodetalledeventa";
+	}
 	
+	@PostMapping("/savedetalledeventa")
+	public String savedetalleDeVenta(@ModelAttribute("detalledeventa") DetalleDeVenta detalleDeVenta,
+			Model model, SessionStatus status) {
+		try {
+			detalleDeVentaService.save(detalleDeVenta);
+			status.setComplete();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/menu/infoplato/" + detalleDeVenta.getPlato().getPlatoId();
+	}
+	@GetMapping("/editplato/{id}")
+	public String editarPlato(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Menu> optional = menuService.findById(id);
+			if (optional.isPresent()) {
+				
+				
+				
+				model.addAttribute("menu", optional.get());
+		
+			} else {
+				return "redirect:/menu/info";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "/menu/editplato";
+	}
 	}
 	
 	

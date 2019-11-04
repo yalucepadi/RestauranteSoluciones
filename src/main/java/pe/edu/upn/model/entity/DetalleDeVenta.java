@@ -22,7 +22,7 @@ public class DetalleDeVenta {
 	private Integer detalleDeVentaId;
 
 	@Column(name = "detalle_de_venta_precio")
-	private float detalleDeVenta_precio;
+	private float detalleDeVentaPrecio;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "venta_total_id")
@@ -30,6 +30,14 @@ public class DetalleDeVenta {
 	
 	@OneToOne(mappedBy = "detalleDeVenta", fetch = FetchType.LAZY)
 	private Plato plato;
+
+	public float getDetalleDeVentaPrecio() {
+		return detalleDeVentaPrecio;
+	}
+
+	public void setDetalleDeVentaPrecio(float detalleDeVentaPrecio) {
+		this.detalleDeVentaPrecio = detalleDeVentaPrecio;
+	}
 
 	public Integer getDetalleDeVentaId() {
 		return detalleDeVentaId;
@@ -39,13 +47,6 @@ public class DetalleDeVenta {
 		this.detalleDeVentaId = detalleDeVentaId;
 	}
 
-	public float getDetalleDeVenta_precio() {
-		return detalleDeVenta_precio;
-	}
-
-	public void setDetalleDeVenta_precio(float detalleDeVenta_precio) {
-		this.detalleDeVenta_precio = detalleDeVenta_precio;
-	}
 
 	public VentaTotal getVentaTotal() {
 		return ventaTotal;

@@ -26,7 +26,10 @@ public class Plato {
 
 	@Column(name = "plato_descripcion", length = 500)
 	private String platoDescripcion;
-
+	
+	@Column(name = "plato_stock")
+	private Integer stock;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "menu_id")
 	private Menu menu;

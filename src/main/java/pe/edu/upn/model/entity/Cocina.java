@@ -20,7 +20,7 @@ public class Cocina {
 	@Column(name = "cocina_id")
 	private Integer cocinaCod;
 
-	@Column(name = "cocina_estado", length = 10)
+	@Column(name = "cocina_estado", length = 50)
 	private String cocinaEstado;
 	
 	@OneToOne(cascade = { CascadeType.ALL })
