@@ -24,9 +24,9 @@ public class VentaTotal {
 	private Integer ventaTotalCod;
 
 
-	@OneToMany(mappedBy = "ventaTotal", fetch = FetchType.LAZY)
+	/*@OneToMany(mappedBy = "ventaTotal", fetch = FetchType.LAZY)
 	private List<DetalleDeVenta> detalleDeVentas;
-
+*/
 	@Column(name = "venta_total_total")
 	private float ventaTotalTotal;
 	
@@ -34,11 +34,11 @@ public class VentaTotal {
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
  
-	public VentaTotal() {
+public VentaTotal() {
+	
+}
 	 
- detalleDeVentas= new ArrayList<>();
-	 
- }
+
 
 	public Integer getVentaTotalCod() {
 		return ventaTotalCod;
@@ -48,13 +48,7 @@ public class VentaTotal {
 		this.ventaTotalCod = ventaTotalCod;
 	}
 
-	public List<DetalleDeVenta> getDetalleDeVentas() {
-		return detalleDeVentas;
-	}
 
-	public void setDetalleDeVentas(List<DetalleDeVenta> detalleDeVentas) {
-		this.detalleDeVentas = detalleDeVentas;
-	}
 
 	public float getVentaTotalTotal() {
 		return ventaTotalTotal;

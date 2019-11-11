@@ -40,17 +40,19 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
+								<th scope="col"> Platoid </th>
 							<th scope="col">detalleDeVentaPrecio</th>
-							<th scope="col">ventaTotal_id </th>
+						
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody th:each="detalleDeVenta ${plato.detalleDeVenta}">
+					<tbody th:each="detalledeventa: ${detalledeventa}">
 						<tr>
 			
-							<th scope="row" th:text="${detalleDeVenta.detalleDeVentaId}">1</th>
-							<td th:text="${detalleDeVenta.detalleDeVentaPrecio}">1</td>
-							<td th:text="${detalleDeVenta.ventaTotal.ventaTotalCod}">1</td>
+							<th scope="row" th:text="${detalledeventa.detalleDeVentaId}">1</th>
+								<td th:text="${detalledeventa.plato.platoId}">1</td>
+							<td th:text="${detalledeventa.detalleDeVentaPrecio}">1</td>
+						
 							
 			
 							
@@ -63,7 +65,7 @@
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/menu/info}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver platos</a>
+				<a th:href="@{/menu}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver platos</a>
 				<a th:href="@{'/menu/' + ${plato.platoId} + '/nuevodetalledeventa/'}" 
 					class="btn btn-primary">
 					<i class="fas fa-file-alt"></i> Nuevo detalle de venta</a>

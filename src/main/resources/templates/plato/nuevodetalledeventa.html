@@ -12,12 +12,12 @@
 			<div class="card-header">Registro de nuevo Detalle de venta</div>
 			<div class="card-body">
 
-				<form th:action="@{/menu/savedetalledeventa}" 
+				<form th:action="@{/plato/savedetalledeventa}" 
 					th:object="${detalledeventa}" method="post">
 							<div class="form-group">
-						<label for="plato.platoId">plato.platoId:</label> 
+						<label for="platoId">platoId:</label> 
 						<input type="text" class="form-control" 
-							placeholder="plato.platoIdo"
+							placeholder="platoId"
 							th:field="*{plato.platoId}">
 					</div>
 					<div class="form-group">
@@ -30,7 +30,7 @@
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> Grabar
 					</button>
-					<a th:href="@{/menu}" class="btn btn-danger"> 
+					<a th:href="@{/plato}" class="btn btn-danger"> 
 						<i class="fas fa-undo"></i> Cancelar 
 					</a>
 				</form>

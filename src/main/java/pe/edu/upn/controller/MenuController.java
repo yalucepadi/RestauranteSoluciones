@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
-import pe.edu.upn.model.entity.Cocina;
 import pe.edu.upn.model.entity.DetalleDeVenta;
 import pe.edu.upn.model.entity.Menu;
 import pe.edu.upn.model.entity.Plato;
 import pe.edu.upn.model.entity.Turno;
-import pe.edu.upn.model.repository.TurnoRepository;
 import pe.edu.upn.service.DetalleDeVentaService;
 import pe.edu.upn.service.MenuService;
 import pe.edu.upn.service.PlatoService;
@@ -103,9 +100,9 @@ public class MenuController {
 	@GetMapping("/infoplato/{id}")
 	public String info_plato(@PathVariable("id") int id, Model model) {
 		try {
-			Optional<Menu> menu = menuService.findById(id);
-			if(menu.isPresent()) {
-				model.addAttribute("menu", menu.get());
+			Optional<Plato> plato = platoService.findById(id);
+			if(plato.isPresent()) {
+				model.addAttribute("plato", plato.get());
 			} else {
 				return "redirect:/menu";
 			}
@@ -142,7 +139,7 @@ public class MenuController {
 			status.setComplete();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		return "redirect:/menu/info/" + plato.getMenu().getMenuId();
 	}
@@ -185,7 +182,7 @@ public class MenuController {
 				detalleDeVenta.setPlato(plato.get());
 				model.addAttribute("detalledeDeVenta", detalleDeVenta);
 			} else {
-				return "redirect:/menu/info";
+				return "redirect:/menu";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -208,15 +205,15 @@ public class MenuController {
 	@GetMapping("/editplato/{id}")
 	public String editarPlato(@PathVariable("id") int id, Model model) {
 		try {
-			Optional<Menu> optional = menuService.findById(id);
+			Optional<Plato> optional = platoService.findById(id);
 			if (optional.isPresent()) {
 				
 				
 				
-				model.addAttribute("menu", optional.get());
+				model.addAttribute("plato", optional.get());
 		
 			} else {
-				return "redirect:/menu/info";
+				return "redirect:/menu";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

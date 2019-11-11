@@ -6,14 +6,22 @@
 
 	<div class="container">
 
-		<h1>Nuevo Plato</h1>
+		<h1>Edición del Usuario</h1>
 
 		<div class="card">
-			<div class="card-header">Registro de nuevo plato</div>
+			<div class="card-header">Edición Usuario</div>
 			<div class="card-body">
 
-				<form th:action="@{/menu/saveplato}" 
+				<form th:action="@{/plato/save}" 
 					th:object="${plato}" method="post">
+							<div class="form-group">
+						<label for="platoId">platoId:</label> 
+						<input type="text" class="form-control" 
+							placeholder="platoId"
+							th:field="*{platoId}">
+							
+					</div>
+					
 					<div class="form-group">
 						<label for="menuId">menuId:</label> 
 						<input type="text" class="form-control" 
@@ -39,13 +47,11 @@
 							placeholder="stock"
 							th:field="*{stock}">
 					</div>
-			
-					
 					
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> Grabar
 					</button>
-					<a th:href="@{/menu}" class="btn btn-danger"> 
+					<a th:href="@{/usuario}" class="btn btn-danger"> 
 						<i class="fas fa-undo"></i> Cancelar 
 					</a>
 				</form>

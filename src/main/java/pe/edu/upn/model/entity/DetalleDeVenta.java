@@ -2,6 +2,7 @@ package pe.edu.upn.model.entity;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,11 +25,12 @@ public class DetalleDeVenta {
 	@Column(name = "detalle_de_venta_precio")
 	private float detalleDeVentaPrecio;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "venta_total_id")
+/*	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "venta_total_id", nullable = true)
 	private VentaTotal ventaTotal;
-	
-	@OneToOne(mappedBy = "detalleDeVenta", fetch = FetchType.LAZY)
+	*/
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "plato_id",nullable = true)
 	private Plato plato;
 
 	public float getDetalleDeVentaPrecio() {
@@ -48,13 +50,7 @@ public class DetalleDeVenta {
 	}
 
 
-	public VentaTotal getVentaTotal() {
-		return ventaTotal;
-	}
 
-	public void setVentaTotal(VentaTotal ventaTotal) {
-		this.ventaTotal = ventaTotal;
-	}
 
 	public Plato getPlato() {
 		return plato;

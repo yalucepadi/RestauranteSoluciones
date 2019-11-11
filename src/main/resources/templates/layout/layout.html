@@ -15,7 +15,7 @@
 </head>
 <body>
 	 <header th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 			<a class="navbar-brand" th:href="@{/}"><i class="fas fa-users"></i> HR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -41,6 +41,9 @@
 					<li  sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/menu}">
 						<i class="fas fa-home"></i> Menu
 					</a></li>
+									<li  sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/plato}">
+						<i class="fas fa-home"></i> Plato
+					</a></li>
 							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/mesa}">
 						<i class="fas fa-home"></i> Mesa
 					</a></li>
@@ -50,7 +53,7 @@
 						<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/cocina}">
 						<i class="fas fa-home"></i> Cocina
 					</a></li>
-							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/VentaTotal}">
+							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/ventaTotal}">
 						<i class="fas fa-home"></i> Venta Total
 					</a></li>
 						<li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/login}">

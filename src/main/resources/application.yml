@@ -3,8 +3,8 @@ spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost:1433;databasename=restaurante
-    username: yair
-    password: 123
+    username: sa
+    password: 12345678
   jpa:
     database: sql-server
     hibernate:

@@ -1,6 +1,6 @@
 package pe.edu.upn.model.entity;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,8 +42,7 @@ public class Plato {
 		this.stock = stock;
 	}
 
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "detalle_de_venta_id",nullable = true)
+	@OneToOne(mappedBy = "plato", fetch = FetchType.LAZY)
 	private DetalleDeVenta detalleDeVenta;
 
 	public Integer getPlatoId() {
